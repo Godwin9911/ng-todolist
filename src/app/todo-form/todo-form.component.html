@@ -1,0 +1,68 @@
+
+<div class="container col-md-5">
+    <h2 class="text-center text-secondary">{{buttonStatus}} Task</h2>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="border p-2 mb-2">
+        <div class="form-group">
+            <input id="task" name="task" class="form-control" placeholder="{{buttonStatus}} task here..." [(ngModel)]='task'
+            required #taskField="ngModel"
+            [class.field-error]="form.submitted && taskField.invalid">
+            <div [hidden]='!form.submitted || taskField.valid'
+            class="alert alert-danger">
+                Please enter a task.
+            </div>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="priority">Priority </label>
+            <select class="form-control ml-1" id="priority" name="priority" [(ngModel)]='priority'
+            required #priorityField="ngModel"
+            [class.field-error]="form.submitted && priorityField.invalid">
+                <option>low</option>
+                <option>medium</option>
+                <option>high</option>
+            </select>
+            <small [hidden]='!form.submitted || priorityField.valid'
+            class="text-danger">
+                Please enter priority level.
+        </small>
+        </div>
+        <div>
+            <button type="submit" *ngIf="buttonStatus==='Add'" class="btn btn-primary">{{buttonStatus}}</button>
+            <div *ngIf="buttonStatus==='Update'">  
+                <button type="submit" class="btn btn-info">{{buttonStatus}}</button>{{' '}}
+                <button type="button" class="btn btn-secondary" (click)='cancel(form)'> Cancel</button>
+            </div>
+        </div>
+    </form>
+
+    <div *ngIf="taskList.length!==0">
+        <div class="text-center p-2">
+            <span class="float-left font-weight-bold p-1">{{taskList.length}} Tasks</span>
+            <button type="button" class="btn btn-outline-secondary btn-sm m-1"
+            [class.active]="filterBy==='all'" (click)="filter('all')">All</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm m-1"
+            [class.active]="filterBy==='low'" (click)="filter('low')">Low</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm m-1"
+            [class.active]="filterBy==='medium'" (click)="filter('medium')">Meduim</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm m-1"
+            [class.active]="filterBy==='high'" (click)="filter('high')">High</button>
+         </div>
+        <ul class="list-group">
+            <li *ngFor='let list of visibleTask' class="list-group-item">
+                <span class="text-secondary" [ngSwitch]="list.priority">
+                    <span *ngSwitchCase="'low'" class="text-success">&#9679;</span>
+                    <span *ngSwitchCase="'medium'" class="text-warning">&#9679;</span>
+                    <span *ngSwitchCase="'high'" class="text-danger">&#9679;</span>
+                </span>
+                {{list.task}} 
+                <span class="float-right">
+                    <button class="btn btn-outline-info btn-sm" (click)='update(list)'>&#8635;</button>{{' '}}
+                    <button class="btn btn-outline-danger btn-sm" (click)='delete(list.id)'>&times;</button>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
