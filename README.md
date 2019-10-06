@@ -3,15 +3,15 @@
 This a Todolist written in angular, you can perform CRUD functionailites on task and sort task based on priority. 
 
 
-## What i learnt
+## What i learnt/did
 
-Using Pipes to format data.
-sorting Data in the component from the HTML.
-Two Way Data binding.
-Template Driven form and also validating Input fields.
-Using angular directives to control UI Elements.
-Create a toastr service to send notification messages.
-Running build in production mode and deploying.
+* Using Pipes to format data.
+* sorting Data in the component from the HTML.
+* Two Way Data binding with ngModel
+* Template Driven form and also validating Input fields.
+* Using angular directives to control UI Elements.
+* Create a toastr service to send notification messages.
+* Running build in production mode and deploying.
 
 ## Screenshots
 <img src="./screenshots/ngtodolist.png" alt="ngtodolist">
