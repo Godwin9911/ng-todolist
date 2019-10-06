@@ -71,13 +71,13 @@ export class TodoFormComponent implements OnInit {
           priority: this.priority
         });
         this.toastr.success(`priority ${this.priority}`,'Task Updated');
-        this.buttonStatus = 'Add'; 
+        this.buttonStatus = 'Add';
       }
       form.resetForm();
     }
     this.filter(this.filterBy);
   }
-   
+
   cancel(form: NgForm){
     this.buttonStatus = 'Add';
     form.resetForm();
@@ -93,8 +93,8 @@ export class TodoFormComponent implements OnInit {
   }
 
   update(list): void {
-    this.task = list.task; 
-    this.priority = list.priority; 
+    this.task = list.task;
+    this.priority = list.priority;
     this.currentId= list.id;
     this.buttonStatus = 'Update';
   }
